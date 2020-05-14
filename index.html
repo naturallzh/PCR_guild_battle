@@ -127,11 +127,13 @@
       <div class="figure-box" @click.stop v-show="popupFlags.damageFigure">
         <div>伤害值只有极其有限的参考价值，不能作为任何评判标准！</div>
         <div>颜色鲜红的那部分伤害在某种程度上"含金量"更高，暗红的反之。同样只有极其有限的参考价值！</div>
-        <div style="display: flex">
+        <div style="display: flex;align-items: center">
           <div v-for="(dateItem) in historyDateObj.dateArr" style="display: flex;align-items: center;margin-right: 10px">
             <input type="checkbox" v-model="damageFigurePara[dateItem-1]">
             <span>第{{dateItem}}天</span>
           </div>
+          <input type="checkbox" v-model="damageFigureSelectAll" @click="selectDamageFigureAll">
+          <span>全选</span>
         </div>
         <div class="display-item" v-for="(playerData) in damageFigureData">
           <div class="name-box">{{playerData.name}}</div>
@@ -148,7 +150,6 @@
 </div>
 </body>
 
-<script type="text/javascript" src="./jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="./vue.min.js"></script>
 
 <script type="text/javascript" src="data.js"></script>

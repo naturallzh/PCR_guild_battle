@@ -9,7 +9,7 @@ let vm = new Vue({
     loadingMask: true,
 
     time: {
-      updateTime: new Date(2020,4,14,16,25),
+      updateTime: new Date(2020,4,14,18,35),
       startTime: new Date(2020,4,7,5),
       curTime: new Date(),
       endTime: new Date(2020,4,14,23,59),
@@ -60,6 +60,19 @@ let vm = new Vue({
 
     damageFigureData :function () {
       return this.playerTotalDamageByDay(this.damageFigurePara);
+    },
+
+    damageFigureSelectAll: {
+      get: function() {
+        let flag = true;
+        for (let i=0;i<this.damageFigurePara.length;i++) {
+          flag = flag&&this.damageFigurePara[i];
+        }
+        return flag;
+      },
+      set: function () {
+
+      }
     }
   },
 
@@ -296,6 +309,14 @@ let vm = new Vue({
       // this.damageFigureData = resArr;
       // console.log(resArr)
       return resArr;
+    },
+
+    selectDamageFigureAll: function() {
+      const arr = [];
+      for (let i=0;i<this.damageFigurePara.length;i++) {
+        arr[i] = !this.damageFigureSelectAll;
+      }
+      this.damageFigurePara = arr;
     },
 
     shiftHistoryLogDone: function (date) {
