@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>每日一刀甜心刀 休闲健康睡饱饱</title>
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="stylesheet" type="text/css" href="./init.css"/>
+  <link rel="stylesheet" type="text/css" href="./base.css"/>
+
+  <link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+
+<body>
+<div id="index-body" v-cloak>
+
+  <transition name="showFigure">
+    <div class="loadingMask" v-if="loadingMask">
+      <div class="circle-image-1"></div>
+      <div class="circle-image-2"></div>
+      <div style="font-size: 200%;margin-bottom: 20px;position: relative">
+        载入中<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span>
+      </div>
+      <span style="position: relative">初次载入可能较慢 请耐心等待</span>
+      <span style="position: relative">如长时间没有响应 可ctrl+f5强制刷新页面</span>
+    </div>
+  </transition>
+
+  <a style="position: fixed;bottom: 10px;background: rgba(255, 255, 255, 0.7);border-radius: 10px;border: #999999 solid 2px;box-shadow: black 3px 3px 3px;padding: 0 5px"
+    href="https://github.com/naturallzh/PCR_guild_battle" target="_blank">
+    访问Github仓库
+  </a>
+
+  <div class="gen-sit-box" v-if="genSit">
+    <h2>状态概览</h2>
+    <div>活动开始时间：{{processDateStr(time.startTime)}}</div>
+    <div>活动结束时间：{{processDateStr(time.endTime)}}</div>
+    <div>最后更新时间：{{processDateStr(time.updateTime)}}</div>
+    <div>当前北京时间：{{processDateStr(time.curTime)}}</div>
+    <div style="position: relative">
+      <div style="position: absolute;background: rgba(128,128,128,0.35);height: 100%;width: 100%"></div>
+      <div style="position: absolute;background: limegreen;height: 100%" :style="'width:'+((time.endTime-time.curTime)/(time.endTime-time.startTime)*100)+'%'"></div>
+      <span style="position: relative;">剩余时间：{{ms2timeStr(time.endTime-time.curTime)}}</span>
+    </div>
+    <div>当前周目：{{mobParas[genSit.curBossIdx-1].round}}</div>
+    <div>当前Boss：{{mobParas[genSit.curBossIdx-1].bossNum}}号 ~ {{mobParas[genSit.curBossIdx-1].name}} ~ 总第{{genSit.curBossIdx}}号</div>
+    <div style="position: relative">
+      <div style="position: absolute;background: rgba(128,128,128,0.35);height: 100%;width: 100%"></div>
+      <div style="position: absolute;background: limegreen;height: 100%" :style="'width:'+(genSit.remainHealthPer)+'%'"></div>
+      <span style="position: relative;">剩余血量：{{genSit.remainHealth}} ~ {{genSit.remainHealthPer}}%</span>
+    </div>
+    <div style="margin: 5px 0">
+      <span>已出刀数：{{actionLogByDay(genSit.curDay).doneNum}}</span>
+      <span class="btn" @click="shiftHistoryLogDone(genSit.curDay-1)">详情点击</span>
+    </div>
+    <div>
+      <span>未出刀数：{{actionLogByDay(genSit.curDay).todoNum}}</span>
+      <span class="btn" @click="shiftHistoryLogTodo(genSit.curDay-1)">详情点击</span>
+    </div>
+  </div>
+
+  <div class="combine-calc">
+    <h2>合刀计算器</h2>
+    <div>
+      <span>剩余血量 </span>
+      <input v-model="combineParas.remainHealth">
+    </div>
+    <div>
+      <span>刀一伤害 </span>
+      <input v-model="combineParas.damageA">
+    </div>
+    <div>
+      <span>刀二伤害 </span>
+      <input v-model="combineParas.damageB">
+    </div>
+    <div v-show="combineRes.length===2">
+      <span>一先二尾 </span>
+      <span>{{combineRes[0]}}秒</span>
+    </div>
+    <div v-show="combineRes.length===2">
+      <span>二先一尾 </span>
+      <span>{{combineRes[1]}}秒</span>
+    </div>
+
+    <h2 style="margin-top: 20px">总伤害查询</h2>
+    <span class="btn" @click="shiftDamageFigure">点击显示图表</span>
+  </div>
+
+  <div class="gen-sit-box" v-if="genSit">
+    <h2>历史记录</h2>
+    <div>第一天没有详细记录每刀伤害</div>
+    <div>实际上90刀出满了</div>
+    <div v-for="(historyDate) in historyDateObj.dateArr" style="margin-bottom: 5px">
+      <span class="btn" @click="shiftHistoryLogDone(historyDate-1)">第{{historyDate}}天已出：{{actionLogByDay(historyDate).doneNum}}</span>
+      <span class="btn" @click="shiftHistoryLogTodo(historyDate-1)">第{{historyDate}}天未出：{{actionLogByDay(historyDate).todoNum}}</span>
+    </div>
+  </div>
+
+  <transition name="showFigure">
+    <div class="today-detail" @click="shiftHistoryLogDone" v-show="popupFlags.historyLogDone">
+      <div class="mob-box" v-for="(mobData,mobIdx) in actionLogByDay(historyDateObj.curSelect+1).done" @click.stop>
+        <div class="title">{{mobParas[mobData.bossIdx-1].round}}周目 {{mobParas[mobData.bossIdx-1].bossNum}}号 {{mobParas[mobData.bossIdx-1].name}} 总第{{mobParas[mobData.bossIdx-1].bossIdx}}号 {{mobData.log.length}}刀</div>
+        <div class="log-item" v-for="(logItem,logIdx) in mobData.log">
+          <div style="position: absolute;height: 100%;background: rgba(255,0,0,0.4);z-index: 0" :style="'width:'+(logItem.damage/mobData.maxDamage*100)+'%'"></div>
+          <span style="margin-left: 5px">{{logItem.name}}</span>
+          <span v-if="logItem.desc">{{logItem.desc}}</span>
+          <span style="margin-right: 5px">{{logItem.damage}}</span>
+        </div>
+      </div>
+    </div>
+  </transition>
+
+  <transition name="showFigure">
+    <div class="today-detail" @click="shiftHistoryLogTodo" v-show="popupFlags.historyLogTodo">
+      <div class="mob-box" @click.stop>
+        <div class="log-item" v-for="(todoItem,todoIdx) in actionLogByDay(historyDateObj.curSelect+1).todo" v-if="todoItem.todoNum!==0">
+          <div style="position: absolute;height: 100%;background: rgba(50,205,50,0.3);z-index: 0" :style="'width:'+(todoItem.todoNum*100/3)+'%'"></div>
+          <span style="margin-left: 5px">{{todoItem.name}}</span>
+          <span style="margin-right: 5px">{{todoItem.todoNum}}</span>
+        </div>
+      </div>
+    </div>
+  </transition>
+
+  <transition name="showFigure">
+    <div class="damage-figure" style="display: flex" v-show="popupFlags.damageFigure" @click="shiftDamageFigure">
+      <div class="figure-box" @click.stop v-show="popupFlags.damageFigure">
+        <div>伤害值只有极其有限的参考价值，不能作为任何评判标准！</div>
+        <div>颜色鲜红的那部分伤害在某种程度上"含金量"更高，暗红的反之。同样只有极其有限的参考价值！</div>
+        <div style="display: flex">
+          <div v-for="(dateItem) in historyDateObj.dateArr" style="display: flex;align-items: center;margin-right: 10px">
+            <input type="checkbox" v-model="damageFigurePara[dateItem-1]">
+            <span>第{{dateItem}}天</span>
+          </div>
+        </div>
+        <div class="display-item" v-for="(playerData) in damageFigureData">
+          <div class="name-box">{{playerData.name}}</div>
+          <div class="damage-bar" v-for="(damageItem) in playerData.detail"
+            :style="'width:'+(damageFigureData[0].total===0?0:(damageItem.damage/damageFigureData[0].total*80))+'%;'+mobParas[damageItem.bossIdx-1].bgC">
+            {{damageItem.damage}}
+          </div>
+          <div style="margin-left: 20px">{{playerData.total}}</div>
+        </div>
+      </div>
+    </div>
+  </transition>
+
+</div>
+</body>
+
+<script type="text/javascript" src="./jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./vue.min.js"></script>
+
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</html>

@@ -1,0 +1,15 @@
+/*Css initialization1*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }  /*让这些的标签内外边距都是0*/
+fieldset, img { border: none;  }
+img{display: block;}
+ul, ol { list-style: none; }
+body { color: black;}
+/*clear fix*/
+.clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+.clearfix { zoom:1; }
+.clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+
+a{ color: black; text-decoration:none; }
+a:visited { color: black; }
+a:hover, a:active, a:focus { color: black; text-decoration:none; }
+/*End of initialization*/
