@@ -78,8 +78,22 @@ let vm = new Vue({
 
   beforeCreate () {},
   created () {
+    if (new Date() > this.time.endTime) {
+      this.time.curTime = this.time.endTime;
+    }
+    else {
+      this.time.countdownTimer = setInterval(()=>{
+        if (new Date() > this.time.endTime) {
+          this.time.curTime = this.time.endTime;
+          clearInterval(this.time.countdownTimer);
+        }
+        else {
+          this.time.curTime = new Date();
+        }
+      },498);
+    }
+
     this.initData();
-    this.time.countdownTimer = setInterval(()=>{this.time.curTime = new Date()},498);
     this.checkData();
   },
 
@@ -95,12 +109,15 @@ let vm = new Vue({
   methods: {
 
     initData: function () {
-      this.nameMap = DATA_nameMap;
+      // this.nameMap = DATA_nameMap;
       this.mobParas = DATA_mobParas;
       this.combineRule = DATA_combineRule;
-      this.actionData = DATA_actionData;
+      // this.actionData = DATA_actionData;
+      // Yobot数据处理
+      this.nameMap = this.processYobotName();
+      this.actionData = this.processYobotData();
 
-      this.genSit = {
+        this.genSit = {
         curDay: Math.ceil((this.time.curTime - this.time.startTime)/1000/3600/24),
         curBossIdx: this.actionData[this.actionData.length-1].bossIdx,
         remainHealth: "",
@@ -136,7 +153,7 @@ let vm = new Vue({
       console.log("%==============================%");
 
       let healthSum = 0;
-      let curBossIdx = 1;
+      let curBossIdx = actionData[0].bossIdx;
       for (let i=0; i<actionData.length; i++) {
         let maxDamage = 0;
         for (let j=0; j<actionData[i].log.length; j++) {
@@ -161,7 +178,16 @@ let vm = new Vue({
           console.log("boss-" + curBossIdx + ": " + remainHealth);
           healthSum = 0;
           curBossIdx++;
+          continue;
         }
+
+        // Yobot 矫正
+        if (i<actionData.length-1 && actionData[i].bossIdx !== actionData[i+1].bossIdx) {
+          console.log("boss-" + curBossIdx + ": " + remainHealth);
+          healthSum = 0;
+          curBossIdx++;
+        }
+
       }
       this.genSit.curBossIdx = curBossIdx;
       this.genSit.remainHealth = mobParas[curBossIdx-1].health-healthSum;
@@ -329,6 +355,64 @@ let vm = new Vue({
     },
     shiftDamageFigure: function () {
       this.popupFlags.damageFigure = !this.popupFlags.damageFigure;
+    },
+
+    processYobotData: function () {
+      const _this = this;
+      const inputData = DATA_challengeData;
+      const DataArr = [];
+      DataArr[0] = {
+        day: timeStamp2day(inputData[0].challenge_time),
+        bossIdx: (inputData[0].cycle-1) * 5 + inputData[0].boss_num,
+        log: [
+          {name: inputData[0].qqid, damage: inputData[0].damage}
+        ]
+      };
+      let DataArrIdx = 0;
+
+      for (let i=1;i<inputData.length;i++) {
+        if (inputData[i].damage===0) {continue}
+        if (timeStamp2day(inputData[i].challenge_time)!==DataArr[DataArrIdx].day || (inputData[i].cycle-1) * 5 + inputData[i].boss_num !== DataArr[DataArrIdx].bossIdx) {
+          const newItemObj = {
+            day: timeStamp2day(inputData[i].challenge_time),
+            bossIdx: (inputData[i].cycle-1) * 5 + inputData[i].boss_num,
+            log: [
+              {name: findName(inputData[i].qqid), damage: inputData[i].damage}
+            ]
+          };
+          DataArr.push(newItemObj);
+          DataArrIdx++;
+        }
+        else {
+          const newLogObj = {name: findName(inputData[i].qqid), damage: inputData[i].damage}
+          DataArr[DataArrIdx].log.push(newLogObj);
+        }
+      }
+
+      //console.log(DataArr);
+      return DataArr;
+
+      function timeStamp2day(sec) {
+        const startSec = (new Date(2020,4,7,5)).getTime() / 1000
+        return Math.ceil((sec-startSec) / 3600 / 24);
+      }
+      function findName(qqid) {
+        const nameMap = _this.nameMap;
+        for (let i=0;i<nameMap.length;i++) {
+          if (nameMap[i].id === qqid) {return nameMap[i].name}
+        }
+      }
+    },
+
+    processYobotName: function () {
+      const inputData = DATA_YobotNameMap;
+      const DataArr = [];
+      for (let i=0;i<inputData.length;i++) {
+        DataArr[i] = {name: inputData[i].nickname, id: inputData[i].qqid}
+      }
+      console.log(DataArr)
+      return DataArr;
     }
+
   }
 });
