@@ -58,7 +58,7 @@ input[type="number"]{
 }
 
 .fadeInOut-enter-active, .fadeInOut-leave-active {
-	transition: opacity 1.5s;
+	transition: opacity 5s;
 }
 .fadeInOut-enter, .fadeInOut-leave-to {
 	opacity: 0;

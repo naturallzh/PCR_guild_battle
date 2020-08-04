@@ -32,8 +32,18 @@ Vue.component('page-loading', {
 // 回到首页按钮
 Vue.component('back2main', {
   template: `
-<div class="back2main">
-  <i-button to="index.html" target="_blank">返回首页</i-button>
-</div>
+<transition name="fadeInOut">
+  <div class="back2main" v-if="loaded">
+    <i-button to="index.html" target="_blank">返回首页</i-button>
+  </div>
+</transition>
 `,
+  data: function () {
+    return {
+      loaded: false,
+    }
+  },
+  mounted() {
+    this.loaded = true;
+  }
 });
