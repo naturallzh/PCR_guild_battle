@@ -10,7 +10,6 @@ const vm = new Vue({
   created () {},
 
   mounted () {
-    //setTimeout(()=>{this.isLoading = false;},1000)
     this.isLoading = false;
   },
 

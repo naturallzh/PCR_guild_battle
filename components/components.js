@@ -1,3 +1,4 @@
+// 页面载入loading
 Vue.component('page-loading', {
   template: `
 <transition name="fadeInOut">
@@ -26,15 +27,13 @@ Vue.component('page-loading', {
       default: true,
     },
   },
+});
 
-  computed: {
-  },
-  watch: {
-  },
-  methods: {
-  },
-
-  created () {},
-  mounted () {
-  },
+// 回到首页按钮
+Vue.component('back2main', {
+  template: `
+<div class="back2main">
+  <i-button to="index.html" target="_blank">返回首页</i-button>
+</div>
+`,
 });

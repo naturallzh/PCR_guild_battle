@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="source/favicon.ico">
   <link rel="stylesheet" type="text/css" href="lib/init.css"/>
   <link rel="stylesheet" type="text/css" href="lib/base.css"/>
-  <link rel="stylesheet" type="text/css" href="lib/component.css"/>
+  <link rel="stylesheet" type="text/css" href="components/components.css"/>
   <link rel="stylesheet" href="//unpkg.com/view-design/dist/styles/iview.css">
 
   <link rel="stylesheet" type="text/css" href="index.css"/>
@@ -16,13 +16,17 @@
 <body>
 <div id="index-body" v-cloak>
   <page-loading :is-loading="isLoading"></page-loading>
-  <div>hello</div>
+  <back2main></back2main>
+  <video loop="loop" autoplay="autoplay" muted="muted" poster="//static.biligame.com/pcr/gw/pc/images/kv/bg.jpg" class="bg-video">
+    <source src="//static.biligame.com/pcr/gw/pc/images/vbg.mp4?6f28534f" type="audio/mp4">
+    <source src="//static.biligame.com/pcr/gw/pc/images/vbg.webm?9980dfe1" type="video/webm">
+  </video>
 </div>
 </body>
 
 <script src="//vuejs.org/js/vue.min.js"></script>
 <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
 
-<script type="text/javascript" src="components/page_loading.js"></script>
+<script type="text/javascript" src="components/components.js"></script>
 <script type="text/javascript" src="index.js"></script>
 </html>

@@ -50,3 +50,7 @@
   .page-loading .sub-text {
     position: relative;
     text-shadow: 0 0 3px black; }
+
+.back2main {
+  position: fixed;
+  bottom: 50px; }
