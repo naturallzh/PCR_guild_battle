@@ -1,0 +1,52 @@
+.page-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white; }
+  .page-loading .circle-image-1 {
+    width: 25%;
+    height: 0;
+    padding-bottom: 25%;
+    position: absolute;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.8));
+    border-radius: 50%;
+    animation: loadingCircle 5s infinite; }
+  .page-loading .circle-image-2 {
+    width: 20%;
+    height: 0;
+    padding-bottom: 20%;
+    position: absolute;
+    background: #878787;
+    border-radius: 50%; }
+  .page-loading .main-text {
+    font-size: 200%;
+    margin-bottom: 20px;
+    position: relative;
+    text-shadow: 0 0 3px black; }
+    .page-loading .main-text .dot-1, .page-loading .main-text .dot-2, .page-loading .main-text .dot-3 {
+      position: relative;
+      animation-name: dotJumping;
+      animation-duration: 2s;
+      animation-iteration-count: infinite; }
+    .page-loading .main-text .dot-2 {
+      animation-delay: 400ms; }
+    .page-loading .main-text .dot-3 {
+      animation-delay: 800ms; }
+@keyframes loadingCircle {
+  from {
+    transform: rotate(0); }
+  to {
+    transform: rotate(360deg); } }
+@keyframes dotJumping {
+  from {
+    top: 0; }
+  30% {
+    top: -10px; }
+  60% {
+    top: 0; }
+  to {
+    top: 0; } }
+  .page-loading .sub-text {
+    position: relative;
+    text-shadow: 0 0 3px black; }

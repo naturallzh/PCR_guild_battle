@@ -1,0 +1,56 @@
+// 使得DOM中利用vue变量动态显示的变量在渲染成功之前不显示，否则会短暂闪过{{XXXXX}}
+[v-cloak] {display: none;}
+
+html, body {
+	height: 100%;
+}
+
+div, span, p {
+	user-select: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+input[type="number"]{
+	-moz-appearance: textfield;
+}
+
+.fs-10 {font-size: 10px;}
+.fs-12 {font-size: 12px;}
+.fs-14 {font-size: 14px;}
+.fs-16 {font-size: 16px;}
+.fs-18 {font-size: 18px;}
+.fs-20 {font-size: 20px;}
+
+.clr-r {color: red;}
+
+.mt-10 {margin-top: 10px;}
+.bold {font-weight: bold;}
+.mask56{width:100%;height:100%;position:fixed;background:rgba(0,0,0,0.56);z-index:99999;top:0;left:0}
+
+.loadingMask {
+	width: 100%;
+	height: 100%;
+	background: rgb(135, 135, 135);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 999;
+}
+
+.slideFromTop-enter-active, .slideFromTop-leave-active {
+	transition: all 0.5s;
+}
+.slideFromTop-enter, .slideFromTop-leave-to {
+	height: 40%;
+	opacity: 0;
+}
+
+.fadeInOut-enter-active, .fadeInOut-leave-active {
+	transition: opacity 1s;
+}
+.fadeInOut-enter, .fadeInOut-leave-to {
+	opacity: 0;
+}
