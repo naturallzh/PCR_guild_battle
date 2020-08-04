@@ -15,6 +15,7 @@
 
 <body>
 <div id="index-body" v-cloak>
+  <div class="bg-cover" :style="isLoading?'':'background:transparent'"></div>
   <page-loading :is-loading="isLoading"></page-loading>
   <back2main></back2main>
   <video loop="loop" autoplay="autoplay" muted="muted" poster="//static.biligame.com/pcr/gw/pc/images/kv/bg.jpg" class="bg-video">

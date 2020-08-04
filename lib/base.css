@@ -59,6 +59,15 @@ input[type="number"] {
   top: 0;
   z-index: 999; }
 
+.bg-cover {
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  top: 0; }
+
 .slideFromTop-enter-active, .slideFromTop-leave-active {
   transition: all 0.5s; }
 
