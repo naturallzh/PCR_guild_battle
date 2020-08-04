@@ -1,7 +1,6 @@
 const vm = new Vue({
   el: '#index-body',
   data: {
-    isLoading: true,
   },
 
   computed: {
@@ -10,7 +9,6 @@ const vm = new Vue({
   created () {},
 
   mounted () {
-    this.isLoading = false;
   },
 
   destroyed () {},

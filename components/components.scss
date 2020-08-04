@@ -1,4 +1,11 @@
 .page-loading {
+	width: 100%;
+	height: 100%;
+	background: rgb(135, 135, 135);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 999;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -28,9 +35,7 @@
 		text-shadow: 0 0 3px black;
 		.dot-1, .dot-2, .dot-3 {
 			position: relative;
-			animation-name: dotJumping;
-			animation-duration: 2s;
-			animation-iteration-count: infinite;
+			animation: dotJumping 2s infinite;
 		}
 		.dot-2 {
 			animation-delay: 400ms;
