@@ -33,7 +33,7 @@ Vue.component('page-loading', {
 Vue.component('back2main', {
   template: `
 <div class="back2main">
-  <i-button to="index.html" target="_blank">返回首页</i-button>
+  <i-button to="index.html" target="_blank" ghost type="info">返回首页</i-button>
 </div>
 `,
 });
@@ -42,7 +42,7 @@ Vue.component('back2main', {
 Vue.component('switch-bg-anime', {
   template: `
 <div class="switchBgAnime">
-  <i-button @click="switchStatus">{{actionStr}}背景动画</i-button>
+  <i-button @click="switchStatus" ghost type="info">{{actionStr}}背景动画</i-button>
 </div>
 `,
   data: function () {

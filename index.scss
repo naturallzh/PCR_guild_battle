@@ -12,12 +12,18 @@ body {
 	align-items: flex-start;
 	justify-content: center;
 	align-content: flex-start;
+	color: #eeeeee;
 	.card-style {
 		min-width: 300px;
 		margin: 80px 50px 0 50px;
 		font-size: 16px;
 		flex-shrink: 0;
+		background: rgba(64, 64, 64, 0.6);
 		//opacity: 0.85;
+		input {
+			color: #eeeeee;
+			background: rgba(238, 238, 238, 0.2);
+		}
 		.ans {
 			font-weight: bold;
 			margin: 0 5px;
