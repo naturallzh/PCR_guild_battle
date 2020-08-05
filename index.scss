@@ -1,2 +1,23 @@
+@import "lib/base";
+body {
+	background: rgba(70, 76, 91, 0.6);
+}
 #index-body {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-around;
+	align-content: flex-start;
+	.card-style {
+		min-width: 300px;
+		margin: 80px 50px 0 50px;
+		font-size: 16px;
+		flex-shrink: 0;
+		//opacity: 0.85;
+		.ans {
+			font-weight: bold;
+			margin: 0 3px;
+			color: $color-lr;
+		}
+	}
 }

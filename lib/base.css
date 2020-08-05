@@ -32,11 +32,17 @@ input[type="number"] {
 .fs-20 {
   font-size: 20px; }
 
+.fs-30 {
+  font-size: 30px; }
+
 .clr-r {
   color: red; }
 
 .mt-10 {
   margin-top: 10px; }
+
+.mb-10 {
+  margin-bottom: 10px; }
 
 .bold {
   font-weight: bold; }
@@ -51,6 +57,7 @@ input[type="number"] {
   left: 0; }
 
 .bg-video {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -62,16 +69,46 @@ input[type="number"] {
 
 .page-body {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 1.5s; }
+  width: 100%;
+  background: rgba(70, 76, 91, 0.6);
+  opacity: 0; }
+
+.fade-in {
+  animation: fadeIn 1.5s;
+  animation-fill-mode: forwards; }
+
+.fade-out {
+  animation: fadeOut 1.5s;
+  animation-fill-mode: forwards; }
 
 @keyframes fadeIn {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+.bg-fade-in {
+  animation: bgFadeIn 1.5s;
+  animation-fill-mode: forwards; }
+
+.bg-fade-out {
+  animation: bgFadeOut 1.5s;
+  animation-fill-mode: forwards; }
+
+@keyframes bgFadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 0.3; } }
+@keyframes bgFadeOut {
+  from {
+    opacity: 0.3; }
+  to {
+    opacity: 0; } }
 .slideFromTop-enter-active, .slideFromTop-leave-active {
   transition: all 0.5s; }
 

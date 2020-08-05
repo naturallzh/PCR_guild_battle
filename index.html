@@ -14,17 +14,58 @@
 </head>
 
 <body>
-<video loop="loop" autoplay="autoplay" muted="muted" poster="//static.biligame.com/pcr/gw/pc/images/kv/bg.jpg" class="bg-video">
+<video loop="loop" autoplay="autoplay" muted="muted" class="bg-video" id="bg-anime">
   <source src="//static.biligame.com/pcr/gw/pc/images/vbg.mp4?6f28534f" type="audio/mp4">
   <source src="//static.biligame.com/pcr/gw/pc/images/vbg.webm?9980dfe1" type="video/webm">
 </video>
 <div id="index-body" class="page-body" v-cloak>
   <back2main></back2main>
+  <switch-bg-anime></switch-bg-anime>
+  <Card class="card-style">
+    <h2 slot="title">合刀计算器</h2>
+    <i-input class="mb-10" v-model="combineCalcInput.remainH">
+      <span slot="prepend">剩余血量</span>
+    </i-input>
+    <i-input class="mb-10" v-model="combineCalcInput.damageA">
+      <span slot="prepend">刀一伤害</span>
+    </i-input>
+    <i-input class="mb-10" v-model="combineCalcInput.damageB">
+      <span slot="prepend">刀二伤害</span>
+    </i-input>
+    <p>
+      <span>一先二尾</span>
+      <span class="ans">{{combineCalcRes[0]}}</span>
+      <span>秒</span>
+    </p>
+    <p>
+      <span>二先一尾</span>
+      <span class="ans">{{combineCalcRes[1]}}</span>
+      <span>秒</span>
+    </p>
+  </Card>
+  <Card class="card-style">
+    <h2 slot="title">进度计算器</h2>
+    <p>卡片内容</p>
+  </Card>
+  <Card class="card-style">
+    <h2 slot="title">骑士君经验计算器</h2>
+    <p>卡片内容</p>
+  </Card>
+  <Card class="card-style">
+    <h2 slot="title">角色经验计算器</h2>
+    <p>卡片内容</p>
+  </Card>
+  <Card class="card-style" v-for="item in [1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+    <h2 slot="title">其他工具</h2>
+    <i-button class="mb-10" to="" target="_blank" long>公会战记录</i-button>
+    <i-button class="mb-10" to="" target="_blank" long>离职证明生成器</i-button>
+  </Card>
 </div>
 </body>
 
 <!--<script src="//vuejs.org/js/vue.min.js"></script>-->
-<script src="https://cdn.staticfile.org/vue/2.6.10/vue.min.js"></script>
+<script src="//cdn.staticfile.org/vue/2.6.10/vue.min.js"></script>
+<!--<script src="//unpkg.com/vue/dist/vue.js"></script>-->
 <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
 
 <script type="text/javascript" src="lib/base.js"></script>

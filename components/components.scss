@@ -62,6 +62,19 @@
 
 .back2main {
 	position: fixed;
-	bottom: 50px;
+	bottom: 70px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	z-index: 3;
 	//box-shadow: 0 0 2px black;
+}
+
+.switchBgAnime {
+	position: fixed;
+	bottom: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	z-index: 3;
 }
