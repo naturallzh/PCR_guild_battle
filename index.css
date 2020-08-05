@@ -2,8 +2,7 @@
   display: none; }
 
 html, body {
-  height: 100%;
-  width: 100%; }
+  height: 100%; }
 
 div, span, p {
   user-select: none; }
@@ -122,14 +121,18 @@ input[type="number"] {
 .fadeInOut-enter, .fadeInOut-leave-to {
   opacity: 0; }
 
-body {
+html {
   background: rgba(70, 76, 91, 0.6); }
 
+body {
+  background: transparent; }
+
 #index-body {
+  background: transparent;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: center;
   align-content: flex-start; }
   #index-body .card-style {
     min-width: 300px;
@@ -138,5 +141,9 @@ body {
     flex-shrink: 0; }
     #index-body .card-style .ans {
       font-weight: bold;
-      margin: 0 3px;
+      margin: 0 5px;
       color: #fb5280; }
+    #index-body .card-style p {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px; }

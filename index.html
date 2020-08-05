@@ -49,13 +49,46 @@
   </Card>
   <Card class="card-style">
     <h2 slot="title">骑士君经验计算器</h2>
-    <p>卡片内容</p>
+    <Icon size="25" type="md-help-circle" slot="extra" color="#2db7f5"></Icon>
+    <i-input class="mb-10" v-model="expCalcInput.curLvl">
+      <span slot="prepend">当前等级</span>
+    </i-input>
+    <i-input class="mb-10" v-model="expCalcInput.curExp">
+      <span slot="prepend">当前经验</span>
+    </i-input>
+    <i-input class="mb-10" v-model="expCalcInput.tarLvl">
+      <span slot="prepend">目标等级</span>
+    </i-input>
+    <p>
+      <span>需要经验</span>
+      <span class="ans">--</span>
+      <span>升级回体</span>
+      <span class="ans">--</span>/<span class="ans">--</span>/<span class="ans">--</span>
+    </p>
+    <p>
+      <Checkbox v-model="expCalcInput.dailyPow2">日常体力双倍</Checkbox>
+      <Checkbox v-model="expCalcInput.dailyExp2">日常经验双倍</Checkbox>
+      <Checkbox v-model="expCalcInput.dailyPow2">公会战日常</Checkbox>
+    </p>
+    <p>
+      <i-input>
+        <span slot="prepend">碎石</span>
+        <span slot="append">管</span>
+      </i-input>
+    </p>
+    <p>
+      <span>日产体力</span>
+      <span class="ans">--</span>
+      <span>预估需要</span>
+      <span class="ans">--</span>
+      <span>天</span>
+    </p>
   </Card>
   <Card class="card-style">
     <h2 slot="title">角色经验计算器</h2>
     <p>卡片内容</p>
   </Card>
-  <Card class="card-style" v-for="item in [1,1,1,1,1,1,1,1,1,1,1,1,1,1]">
+  <Card class="card-style">
     <h2 slot="title">其他工具</h2>
     <i-button class="mb-10" to="" target="_blank" long>公会战记录</i-button>
     <i-button class="mb-10" to="" target="_blank" long>离职证明生成器</i-button>

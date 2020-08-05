@@ -28,12 +28,21 @@ const vm = new Vue({
 
   methods: {
     init: function () {
+      // 初始化合刀计算器输入数据
       const combineCalcInput = {
-        remainH: '',
-        damageA: '',
-        damageB: '',
+        remainH: '', damageA: '', damageB: '',
       }
       this.combineCalcInput = combineCalcInput;
-    }
+      // 初始化进度计算器输入数据
+      const progressCalcInput = {
+      }
+      this.progressCalcInput = progressCalcInput;
+      // 初始化进度计算器输入数据
+      const expCalcInput = {
+        curLvl: '', curExp: '', tarLvl: '',
+        dailyPow2: false, dailyExp2: false,
+      }
+      this.expCalcInput = expCalcInput;
+    },
   }
 });

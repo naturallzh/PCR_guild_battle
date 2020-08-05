@@ -1,12 +1,16 @@
 @import "lib/base";
-body {
+html {
 	background: rgba(70, 76, 91, 0.6);
 }
+body {
+	background: transparent;
+}
 #index-body {
+	background: transparent;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
-	justify-content: space-around;
+	justify-content: center;
 	align-content: flex-start;
 	.card-style {
 		min-width: 300px;
@@ -16,8 +20,13 @@ body {
 		//opacity: 0.85;
 		.ans {
 			font-weight: bold;
-			margin: 0 3px;
+			margin: 0 5px;
 			color: $color-lr;
+		}
+		p {
+			display: flex;
+			align-items: center;
+			margin-bottom: 5px;
 		}
 	}
 }
