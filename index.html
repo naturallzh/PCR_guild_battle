@@ -49,7 +49,7 @@
   </Card>
   <Card class="card-style">
     <h2 slot="title">骑士君经验计算器</h2>
-    <Icon size="25" type="md-help-circle" slot="extra" color="#2db7f5"></Icon>
+    <i-button type="primary" shape="circle" icon="md-help" slot="extra" size="small" @click="modals.playerExpInfo = true"></i-button>
     <i-input class="mb-10" v-model="expCalcInput.curLvl">
       <span slot="prepend">当前等级</span>
     </i-input>
@@ -93,6 +93,17 @@
     <i-button class="mb-10" to="" target="_blank" long>公会战记录</i-button>
     <i-button class="mb-10" to="" target="_blank" long>离职证明生成器</i-button>
   </Card>
+
+  <Modal
+    footer-hide="1"
+    class-name="vertical-center-modal"
+    v-model="modals.playerExpInfo"
+    title="骑士君经验及体力相关说明">
+    <p v-for="item in modalsContent.playerExpInfo">
+      <Icon type="md-send"></Icon>
+      <span>{{item}}</span>
+    </p>
+  </Modal>
 </div>
 </body>
 
@@ -102,6 +113,7 @@
 <script src="//unpkg.com/view-design/dist/iview.min.js"></script>
 
 <script type="text/javascript" src="lib/base.js"></script>
+<script type="text/javascript" src="source/modals_content_data.js"></script>
 <script type="text/javascript" src="components/components.js"></script>
 <script type="text/javascript" src="index.js"></script>
 </html>

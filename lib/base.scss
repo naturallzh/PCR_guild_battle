@@ -51,6 +51,34 @@ $color-lr: #fb5280;
 	opacity: 0;
 }
 
+.vertical-center-modal{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.ivu-modal{
+		top: 0;
+	}
+}
+.ivu-modal-mask {
+	background: rgba(55, 55, 55, 0.8);
+}
+.ivu-modal-header-inner {
+	font-size: 20px;
+	font-weight: bold;
+}
+.ivu-modal-body {
+	p {
+		display: flex;
+		align-items: flex-start;
+		font-size: 16px;
+		margin: 2px 0;
+		i {
+			margin-right: 9px;
+			position: relative;
+			top: 3px;
+		}
+	}
+}
 .fade-in {
 	animation: fadeIn 1.5s;
 	animation-fill-mode: forwards;

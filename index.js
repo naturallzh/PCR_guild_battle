@@ -4,6 +4,9 @@ const vm = new Vue({
     combineCalcInput: {}, // 合刀计算器输入数据
     progressCalcInput: {}, // 进度计算器输入数据
     expCalcInput: {}, // 进度计算器输入数据
+
+    modals: {}, // 控制模态框是否显示的标识
+    modalsContent: {},
   },
 
   computed: {
@@ -29,20 +32,23 @@ const vm = new Vue({
   methods: {
     init: function () {
       // 初始化合刀计算器输入数据
-      const combineCalcInput = {
+      this.combineCalcInput = {
         remainH: '', damageA: '', damageB: '',
-      }
-      this.combineCalcInput = combineCalcInput;
+      };
       // 初始化进度计算器输入数据
-      const progressCalcInput = {
-      }
-      this.progressCalcInput = progressCalcInput;
+      this.progressCalcInput = {
+      };
       // 初始化进度计算器输入数据
-      const expCalcInput = {
+      this.expCalcInput = {
         curLvl: '', curExp: '', tarLvl: '',
         dailyPow2: false, dailyExp2: false,
-      }
-      this.expCalcInput = expCalcInput;
+      };
+      // 初始化模态框标识状态
+      this.modals = {
+        playerExpInfo: false,
+      };
+      this.modalsContent = DATA_modalsContent;
     },
+
   }
 });

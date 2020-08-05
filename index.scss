@@ -1,6 +1,6 @@
 @import "lib/base";
 html {
-	background: rgba(238, 238, 238, 0.3);
+	background: rgba(64, 64, 80, 0.9);
 }
 body {
 	background: transparent;
@@ -18,8 +18,9 @@ body {
 		margin: 80px 50px 0 50px;
 		font-size: 16px;
 		flex-shrink: 0;
-		background: rgba(32, 32, 32, 0.5);
-		//opacity: 0.85;
+		background: transparent;
+		// background: rgba(32, 32, 32, 0.5);
+		// opacity: 0.85;
 		input {
 			color: #eeeeee;
 			background: rgba(238, 238, 238, 0.2);
