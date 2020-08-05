@@ -19,9 +19,9 @@ const vm = new Vue({
   mounted () {
     addClass(getEl('index-body'),['fade-in']);
     this.timer = setTimeout(()=>{
-      getEl('index-body').style.opacity = '100%';
+      getEl('index-body').style.opacity = '1';
       removeClass(getEl('index-body'),['fade-in']);
-    },1510);
+    },1600);
   },
 
   destroyed () {},
